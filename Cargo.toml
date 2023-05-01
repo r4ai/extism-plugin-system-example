@@ -1,0 +1,16 @@
+[package]
+name = "wasm-plugin-system"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = [
+  "plugin-system",
+]
+exclude = [
+  "sample-plugin",
+]
+
+[dependencies]
+extism = "0.3.0"
+plugin-system = { path = "./plugin-system" }
