@@ -17,12 +17,15 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup rust
         run: |
+          rustup update
+          rustup default stable
           rustup target add wasm32-wasi
           curl https://wasmtime.dev/install.sh -sSf | bash
-      - name: Setup Extism
+      - name: Install wask-sdk
         run: |
-          curl https://raw.githubusercontent.com/extism/cli/main/install.sh | sh
-          extism install latest
+          wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-20/wasi-sdk-20.0-linux.tar.gz -O wasi-sdk.tar.gz
+          mkdir -p wasi-sdk && tar xvf wasi-sdk.tar.gz -C wasi-sdk --strip-components 1
+          rm -rf wasi-sdk.tar.gz
       - name: Build plugin
         run: cd plugin-system && cargo build --release --target wasm32-wasi && mv target/wasm32-wasi/release/sample_plugin.wasm ../plugin.wasm
       - name: Run app
