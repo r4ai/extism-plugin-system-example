@@ -9,7 +9,7 @@ cargo run
 # >>> Hello, WebAssembly!
 ```
 
-- wasm-plugin-system:
+- extism-plugin-system-example:
   - sample-pluginを読み込んで、plugin内で定義されてる`greet`関数を呼び出すアプリ。
 - plugin-system:
   - `greet`関数を呼び出すラッパー
